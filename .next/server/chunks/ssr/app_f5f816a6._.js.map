@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/toma/Programming/Projects/sunarte/sunarte-tomagnet-multilang/app/%28blog%29/actions.ts"],"sourcesContent":["\"use server\";\n\nimport { draftMode } from \"next/headers\";\n\nexport async function disableDraftMode() {\n  \"use server\";\n  await Promise.allSettled([\n    (await draftMode()).disable(),\n    // Simulate a delay to show the loading state\n    new Promise((resolve) => setTimeout(resolve, 1000)),\n  ]);\n}\n"],"names":[],"mappings":";;;;;AAEA;;;;;AAEO,eAAe,uCAAc,GAAd;IAEpB,MAAM,QAAQ,UAAU,CAAC;QACvB,CAAC,MAAM,CAAA,GAAA,+HAAA,CAAA,YAAS,AAAD,GAAG,EAAE,OAAO;QAC3B,6CAA6C;QAC7C,IAAI,QAAQ,CAAC,UAAY,WAAW,SAAS;KAC9C;AACH;;;IAPsB;;AAAA,+OAAA","debugId":null}},
-    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":["file:///Users/toma/Programming/Projects/sunarte/sunarte-tomagnet-multilang/app/%28blog%29/page.tsx"],"sourcesContent":["// This page will only be rendered temporarily during the redirect\n// We can either leave it empty or add minimal loading UI\nexport default function Loading() {\n  return null;\n}"],"names":[],"mappings":"AAAA,kEAAkE;AAClE,yDAAyD;;;;AAC1C,SAAS;IACtB,OAAO;AACT","debugId":null}}]
-}

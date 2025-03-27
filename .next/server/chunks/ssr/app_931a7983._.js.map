@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/toma/Programming/Projects/sunarte/sunarte-tomagnet-multilang/app/%28blog%29/actions.ts"],"sourcesContent":["\"use server\";\n\nimport { draftMode } from \"next/headers\";\n\nexport async function disableDraftMode() {\n  \"use server\";\n  await Promise.allSettled([\n    (await draftMode()).disable(),\n    // Simulate a delay to show the loading state\n    new Promise((resolve) => setTimeout(resolve, 1000)),\n  ]);\n}\n"],"names":[],"mappings":";;;;;AAEA;;;;;AAEO,eAAe,uCAAc,GAAd;IAEpB,MAAM,QAAQ,UAAU,CAAC;QACvB,CAAC,MAAM,CAAA,GAAA,+HAAA,CAAA,YAAS,AAAD,GAAG,EAAE,OAAO;QAC3B,6CAA6C;QAC7C,IAAI,QAAQ,CAAC,UAAY,WAAW,SAAS;KAC9C;AACH;;;IAPsB;;AAAA,+OAAA","debugId":null}},
-    {"offset": {"line": 53, "column": 0}, "map": {"version":3,"sources":["file:///Users/toma/Programming/Projects/sunarte/sunarte-tomagnet-multilang/app/%28blog%29/%5Blang%5D/posts/%5Bslug%5D/page.tsx"],"sourcesContent":["export default function PostPage({\n  params,\n}: {\n  params: { lang: string; slug: string };\n}) {\n  return (\n    <div>\n      <h1>Blog Post</h1>\n      <p>Language: {params.lang}</p>\n      <p>Slug: {params.slug}</p>\n    </div>\n  );\n}"],"names":[],"mappings":";;;;;AAAe,SAAS,SAAS,EAC/B,MAAM,EAGP;IACC,qBACE,8OAAC;;0BACC,8OAAC;0BAAG;;;;;;0BACJ,8OAAC;;oBAAE;oBAAW,OAAO,IAAI;;;;;;;0BACzB,8OAAC;;oBAAE;oBAAO,OAAO,IAAI;;;;;;;;;;;;;AAG3B","debugId":null}}]
-}

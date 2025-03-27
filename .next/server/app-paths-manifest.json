@@ -1,6 +1,0 @@
-{
-  "/(blog)/[lang]/page": "app/(blog)/[lang]/page.js",
-  "/(blog)/[lang]/posts/[slug]/page": "app/(blog)/[lang]/posts/[slug]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
-}
