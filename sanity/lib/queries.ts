@@ -19,15 +19,15 @@ const postFields = /* groq */ `
   }
 `;
 
-export const heroQuery = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
+export const heroQueryByLang = defineQuery(`
+  *[_type == "post" && defined(slug.current) && language == $lang] | order(date desc, _updatedAt desc) [0] {
     content,
     ${postFields}
   }
 `);
 
 export const moreStoriesQuery = defineQuery(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "post" && _id != $skip && defined(slug.current) && language == $lang] | order(date desc, _updatedAt desc) [0...$limit] {
     ${postFields}
   }
 `);

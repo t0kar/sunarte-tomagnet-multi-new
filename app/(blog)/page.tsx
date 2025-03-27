@@ -10,7 +10,7 @@ import PortableText from './portable-text';
 
 import * as demo from '@/sanity/lib/demo';
 import { sanityFetch } from '@/sanity/lib/fetch';
-import { heroQuery, settingsQuery } from '@/sanity/lib/queries';
+import { heroQueryByLang, settingsQuery } from '@/sanity/lib/queries';
 
 function Intro(props: { title: string | null | undefined; description: any }) {
   const title = props.title || demo.title;
@@ -82,7 +82,7 @@ function HeroPost({
 export default async function Page() {
   const [settings, heroPost] = await Promise.all([
     sanityFetch({ query: settingsQuery }),
-    sanityFetch({ query: heroQuery }),
+    sanityFetch({ query: heroQueryByLang }),
   ]);
 
   console.log('hero post', heroPost, settings);

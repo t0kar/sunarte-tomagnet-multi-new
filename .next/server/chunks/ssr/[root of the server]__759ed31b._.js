@@ -337,7 +337,7 @@ async function sanityFetch({ query, params = {}, perspective: _perspective, /**
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "heroQuery": (()=>heroQuery),
+    "heroQueryByLang": (()=>heroQueryByLang),
     "moreStoriesQuery": (()=>moreStoriesQuery),
     "postQuery": (()=>postQuery),
     "postSlugs": (()=>postSlugs),
@@ -362,14 +362,14 @@ const postFields = /* groq */ `
     language
   }
 `;
-const heroQuery = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$groq$2f$lib$2f$groq$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["defineQuery"])(`
-  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [0] {
+const heroQueryByLang = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$groq$2f$lib$2f$groq$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["defineQuery"])(`
+  *[_type == "post" && defined(slug.current) && language == $lang] | order(date desc, _updatedAt desc) [0] {
     content,
     ${postFields}
   }
 `);
 const moreStoriesQuery = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$groq$2f$lib$2f$groq$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["defineQuery"])(`
-  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "post" && _id != $skip && defined(slug.current) && language == $lang] | order(date desc, _updatedAt desc) [0...$limit] {
     ${postFields}
   }
 `);

@@ -14,11 +14,10 @@ import CoverImage from '@/app/(blog)/cover-image';
 import DateComponent from '@/app/(blog)/date';
 import MoreStories from '@/app/(blog)/more-stories';
 import CustomPortableText from '@/app/(blog)/portable-text';
+import { i18n } from '@/config/i18n';
 
-// ✅ updated to include language param
-type Props = { params: { slug: string; lang: string } };
+type Props = { params: { slug: string; lang: any } };
 
-// ✅ updated query to fetch slug + language
 const postSlugs = defineQuery(
   `*[_type == "post" && defined(slug.current) && defined(language)]{
     "slug": slug.current,
@@ -32,8 +31,6 @@ export async function generateStaticParams() {
     perspective: 'published',
     stega: false,
   });
-
-  console.log('STATIC PARAMS:', posts); // ✅ check what’s coming
 
   return posts.map((post: any) => ({ slug: post.slug, lang: post.lang }));
 }
@@ -62,7 +59,10 @@ export async function generateMetadata(
 }
 
 export default async function PostPage({ params }: Props) {
-  console.log('page', params);
+  // Validate language parameter
+  if (!i18n.languages.includes(params.lang)) {
+    notFound();
+  }
 
   const [post, settings] = await Promise.all([
     sanityFetch({
@@ -73,13 +73,13 @@ export default async function PostPage({ params }: Props) {
   ]);
 
   if (!post?._id) {
-    return notFound();
+    notFound();
   }
 
   return (
     <div className='container mx-auto px-5'>
       <h2 className='mb-16 mt-10 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter'>
-        <Link href='/' className='hover:underline'>
+        <Link href={`/${params.lang}`} className='hover:underline'>
           {settings?.title || demo.title}
         </Link>
       </h2>
@@ -120,7 +120,7 @@ export default async function PostPage({ params }: Props) {
           Recent Stories
         </h2>
         <Suspense>
-          <MoreStories skip={post._id} limit={2} />
+          <MoreStories skip={post._id} limit={2} language={params.lang} />
         </Suspense>
       </aside>
     </div>

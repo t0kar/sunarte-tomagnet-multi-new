@@ -10,22 +10,31 @@ import { moreStoriesQuery } from '@/sanity/lib/queries';
 export default async function MoreStories(params: {
   skip: string;
   limit: number;
+  language?: string;
 }) {
-  const data = await sanityFetch({ query: moreStoriesQuery, params });
-
-  console.log('more storeie', data);
+  const data = await sanityFetch({
+    query: moreStoriesQuery,
+    params: { skip: params.skip, limit: params.limit, lang: params.language },
+  });
 
   return (
     <div className='mb-32 grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-16 md:gap-y-32 lg:gap-x-32'>
       {data?.map((post: any) => {
-        const { _id, title, slug, coverImage, excerpt, author } = post;
+        const { _id, title, slug, coverImage, excerpt, author, language } =
+          post;
         return (
           <article key={_id}>
-            <Link href={`/posts/${slug}`} className='group mb-5 block'>
+            <Link
+              href={`/${language}/posts/${slug}`}
+              className='group mb-5 block'
+            >
               <CoverImage image={coverImage} priority={false} />
             </Link>
             <h3 className='text-balance mb-3 text-3xl leading-snug'>
-              <Link href={`/posts/${slug}`} className='hover:underline'>
+              <Link
+                href={`/${language}/posts/${slug}`}
+                className='hover:underline'
+              >
                 {title}
               </Link>
             </h3>
